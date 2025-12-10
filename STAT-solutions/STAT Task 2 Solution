@@ -1,85 +1,131 @@
-##############
-### TASK 2 ###
-##############
+############################################################
+# Author: Jan-Hendrik Schünemann
+# Contact: jan-hendrik.schuenemann(at)haw-hamburg.de
+# Module: STAT
+# Assignment / Task: Task 2 – Personnel data
+# Version: v1.0
+# Last Update: 2025-12-10
+#
+# Required Dataset(s): personnel_survey.rds
+# Required Packages: summarytools, dplyr, ggplot2, plotly
+#
+# R Version:
+# Operating System:
+# License: MIT
+############################################################
 
-# Load data
+
+## 1. Load data --------------------------------------------------------------
+
 df <- readRDS("personnel_survey.rds")
+# readRDS(): loads an R object stored in a .rds file.
 
-# --- Frequency Tables ---
 
-# Load necessary libraries
-if(!require(summarytools)) install.packages("summarytools")
+## 2. Frequency tables ------------------------------------------------------
+
+# If you have not installed the packages yet:
+# install.packages("summarytools")
+# install.packages("dplyr")
+
 library(summarytools)
+library(dplyr)
+# summarytools gives us freq()
+# dplyr gives us pipes (%>%) and select()
 
-# Frequency table for 'professional experience'
-experience_table <- freq(df$experience, style = "simple")
-print(experience_table)
 
-# Frequency table for 'education'
-education_table <- freq(df$education, style = "simple")
-print(education_table)
+### Default method: df$variable  (beginner-friendly)
 
-# Frequency table for 'gender'
-gender_table <- freq(df$gender, style = "simple")
-print(gender_table)
+# Here we use df$experience, df$education, etc.
+# The $ tells R: "Take the column with this name from the data frame df".
+# If we only wrote experience, R would look for an object called "experience"
+# in the global environment and might not find it.
 
-# Frequency table for 'gross salary'
-# Note: Since 'gross salary' is a continuous variable, consider whether a frequency table is useful.
-# Frequency tables are typically more informative for categorical data.
-salary_table <- freq(df$salary, style = "simple")
-print(salary_table)
+freq(df$experience)  # Professional experience
+freq(df$education)   # Education level
+freq(df$gender)      # Gender
 
-# --- Visualizations ---
+# Gross salary is continuous → frequency tables are not very informative
+# (many different values). A histogram or grouping into classes would be better.
+# freq(df$salary)  # optional, not required here
 
-# Load ggplot2 for visualization
-if (!require(ggplot2)) install.packages("ggplot2")
+
+### Optional method 1: Using select() + pipe
+
+df %>%
+  select(experience) %>%
+  freq()
+
+df %>%
+  select(education) %>%
+  freq()
+
+df %>%
+  select(gender) %>%
+  freq()
+
+
+### Optional method 2: Passing df into freq() and naming the variable
+
+df %>% freq(experience)
+df %>% freq(education)
+df %>% freq(gender)
+
+
+## 3. Visualisations --------------------------------------------------------
+
+# If you have not installed the packages yet:
+# install.packages("ggplot2")
+# install.packages("plotly")
+
 library(ggplot2)
-
-# Visualization of Year of Joining
-ggplot(df, aes(x = as.factor(date))) +
-  geom_bar() +
-  labs(title = "Year of Joining", x = "Year", y = "Count of Employees")
-
-# Visualization of Department
-ggplot(df, aes(x = department)) +
-  geom_bar() +
-  labs(title = "Employee Count by Department", x = "Department", y = "Count")
-
-# Visualization of Employment Type (Full-Time/Part-Time)
-ggplot(df, aes(x = "", fill = type)) +
-  geom_bar(width = 1) +
-  coord_polar("y", start = 0) +
-  labs(title = "Full-Time vs Part-Time Employment") +
-  theme_void()
-
 library(plotly)
 
+# Year of joining (bar chart)
+ggplot(df, aes(x = as.factor(date))) +
+  geom_bar() +
+  labs(
+    title = "Year of Joining",
+    x = "Year of joining",
+    y = "Number of employees"
+  )
+
+# Department (bar chart)
+ggplot(df, aes(x = department)) +
+  geom_bar() +
+  labs(
+    title = "Employees by Department",
+    x = "Department",
+    y = "Number of employees"
+  )
+
+# Full-time vs Part-time (interactive pie chart – main version)
 plot_ly(
   data = df,
   labels = ~type,
   type = "pie"
 ) %>%
-  layout(
-    title = "Full-Time vs Part-Time Employment"
-  )
+  layout(title = "Full-Time vs Part-Time Employment")
 
-# --- Percentile Calculations for Age ---
 
-# Calculate the 40th and 50th percentiles for age
-P40 <- quantile(df$age, 0.40, na.rm = TRUE)
-P50 <- quantile(df$age, 0.50, na.rm = TRUE)  # 50th percentile is also the median
+## Optional: ggplot2 pie chart (secondary example, not required) -------------
 
-# Interpretation of Percentiles
-print(P40)
-# P40 (40th Percentile) = 37.2
-# This means that at least 40% of employees are aged 37.2 years or younger.
-# Conversely, at least 60% of employees are older than 37.2 years.
+# ggplot(df, aes(x = "", fill = type)) +
+#   geom_bar(width = 1) +
+#   coord_polar("y") +
+#   labs(title = "Employment Type") +
+#   theme_void()
 
-print(P50)
-# The 50th percentile (or median) indicates that at least half of the employees are aged 38 years or younger,
-# while the other half are older than 38. This median value represents the central point in the age
-# distribution of employees, showing an even split between younger and older employees.
 
-# Summary
-# These percentiles suggest that most employees are in a similar age range, with the age distribution
-# slightly concentrated around the upper 30s.
+## 4. Percentiles (P40 & P50) for age --------------------------------------
+
+# quantile() calculates percentiles.
+# type = 2 uses the (n + 1) rule from class.
+# This is the only version students can check manually.
+# Other type values use slightly different calculation methods.
+
+quantile(df$age, probs = 0.40, type = 2, na.rm = TRUE)  # P40
+quantile(df$age, probs = 0.50, type = 2, na.rm = TRUE)  # P50 = median
+
+# Interpretation examples:
+# P40: 40% of employees are this age or younger.
+# P50: Median age → half of the employees are younger/equal, half are older.
