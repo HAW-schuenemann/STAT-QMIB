@@ -1,83 +1,67 @@
-##############
-### TASK 1 ###
-##############
+############################################################
+# Author: Jan-Hendrik Schünemann
+# Contact: jan-hendrik.schuenemann(at)haw-hamburg.de
+# Module: STAT
+# Assignment / Task: Task 1 – Age distribution
+# Version: v2.0
+# Last Update: 2025-12-10
+#
+# Required Dataset(s): (hard-coded in script)
+# Required Packages: summarytools
+#
+# R Version:
+# Operating System:
+# License: MIT
+############################################################
 
-# Original age data
-age <- c(25, 28, 23, 24, 27, 24, 22, 32, 24, 26, 28, 30, 26, 25, 24, 25, 24, 27, 25, 23)
 
-# --- Generate the Frequency Table ---
+## 1. Data entry -------------------------------------------------------------
 
-# Absolute frequency
-freq_abs <- table(age)
-
-# Relative frequency as percentages
-freq_rel <- (freq_abs)/length(age)
-
-# Cumulative relative frequency
-freq_cum_rel <- cumsum(freq_rel)
-
-# Combine all into a single table
-freq_table <- cbind(
-  Absolute = freq_abs,
-  Relative_Percentage = round(freq_rel, 2),
-  Cumulative_Relative = round(freq_cum_rel, 2)
+age <- c(
+  25, 28, 23, 24, 27, 24, 22, 32, 24, 26,
+  28, 30, 26, 25, 24, 25, 24, 27, 25, 23
 )
 
-# Print the frequency table
-print(freq_table)
 
-# --- Generate the Frequency Table Using summarytools Package ---
+## 2. Frequency table using freq() ------------------------------------------
 
-# Install summarytools package if not already installed
-if(!require(summarytools)) install.packages("summarytools")
+# If you have not installed the package yet:
+# install.packages("summarytools")
+
 library(summarytools)
+# Loads the package summarytools.
+# Required so R can use the function freq().
 
-# Generate the frequency table using summarytools
-freq_table <- freq(age, style = "simple")
+freq(age)
+# Creates a frequency table including:
+# - absolute frequencies
+# - relative frequencies
+# - cumulative absolute and cumulative relative frequencies
+# This is the preferred method in this course.
 
-# Print the frequency table
-print(freq_table)
 
-# --- Manual Calculation of Percentiles (P33 and P60) ---
+## 3. Percentiles (P33 and P60) ---------------------------------------------
 
-# Sort the age data
-age_sorted <- sort(age)
+# quantile() calculates percentiles (and quartiles).
+# type = 2 uses the (n + 1) rule discussed in class.
+# → Only version that can be manually verified
+# Other type values use different calculation methods.
 
-# Total number of participants
-N <- length(age_sorted)
+quantile(age, probs = 0.33, type = 2, na.rm = TRUE)  # P33
+quantile(age, probs = 0.60, type = 2, na.rm = TRUE)  # P60
 
-# --- Manual Calculation of P60 ---
 
-# Step 1: Calculate the position for P60
-P60_position <- N * 0.6  # This gives 12
+## Optional: Manual frequency table (very basic) ----------------------------
+# Only shown to understand the underlying logic
 
-# Step 2: Take the average of the values at position 12 and 13
-P60_value <- (age_sorted[12] + age_sorted[13]) / 2
+freq_abs <- table(age)
+freq_rel <- freq_abs / length(age)
+freq_rel_cum <- cumsum(freq_rel)
 
-# Step 3: Display P60 result
-print(P60_value)
+freq_table <- cbind(
+  Absolute = freq_abs,
+  Relative = round(freq_rel, 2),
+  Cumulative_Relative = round(freq_rel_cum, 2)
+)
 
-# --- Manual Calculation of P33 ---
-
-# Step 1: Calculate the position for P33
-P33_position <- N * 0.33  # This gives 6.6
-
-# Step 2: Since 6.6 rounds up, we go to position 7
-P33_value <- age_sorted[7]
-
-# Step 3: Display P33 result and interpretation
-print(P33_value)
-
-# --- Explanation of N+1 Rule ---
-# In many statistical software packages, including R, the position for a percentile is calculated as k * (N + 1), where N is the number of observations.
-# This spreads the percentile positions more evenly across the dataset, especially in small datasets, making the percentiles more representative.
-
-# --- Using the quantile Function with N+1 Rule in R ---
-
-# Calculate P60 and P33 using the quantile function (which uses the N+1 rule)
-P60_quantile <- quantile(age, 0.60, type = 2)
-P33_quantile <- quantile(age, 0.33, type = 2)
-
-# Display results from the quantile function
-print(P60_quantile)
-print(P33_quantile)
+freq_table
