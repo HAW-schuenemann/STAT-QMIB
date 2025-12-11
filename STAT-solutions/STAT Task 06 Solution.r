@@ -2,7 +2,7 @@
 # Author: Jan-Hendrik Schünemann
 # Module: STAT
 # Task: 6 – Recoding Variables and Frequency Analysis
-# Version: v1.1 (YYYY-MM-DD)
+# Version: v1.1 (2025-12-11)
 # Required Dataset: MovieData.rds
 # Required Libraries: dplyr, summarytools
 ############################################################
