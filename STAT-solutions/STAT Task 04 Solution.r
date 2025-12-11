@@ -28,7 +28,7 @@ df %>%
   ggplot(aes(x = DECopiesW1, y = cum_rel)) +
   geom_point() +
   labs(
-    title = "Cumulative Relative Frequency Curve\nCopies in Germany (Week 1)",
+    title = "Cumulative Relative Frequency Curve: Copies in Germany (Week 1)",
     x = "Copies in Germany (Week 1)",
     y = "Cumulative relative frequency (%)"
   ) +
