@@ -4,12 +4,10 @@
 # Task: 13 – Two-Way Frequency Table (SEQUEL × MIN_class)
 # Version: v1.1 (2025-12-11)
 # Required Dataset: MovieData.rds
-# Required Libraries: gmodels, summarytools, dplyr
+# Required Libraries: gmodels
 ############################################################
 
 library(gmodels)
-library(summarytools)
-library(dplyr)
 
 df <- readRDS("MovieData.rds")
 
