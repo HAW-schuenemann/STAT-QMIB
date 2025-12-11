@@ -1,7 +1,7 @@
 ############################################################
 # Author: Jan-Hendrik Schünemann
 # Module: STAT
-# Task 2 – Personnel data
+# Task: 2 – Personnel data
 # Version: v1.0 (2025-12-10)
 # Required Dataset: personnel_survey.rds
 # Required Libraries: summarytools, dplyr, ggplot2, plotly
@@ -122,4 +122,5 @@ quantile(df$age, probs = 0.50, type = 2, na.rm = TRUE)  # P50 = median
 # Interpretation examples:
 # P40: 40% of employees are this age or younger.
 # P50: Median age → half of the employees are younger/equal, half are older.
+
 
