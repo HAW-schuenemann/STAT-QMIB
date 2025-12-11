@@ -1,17 +1,10 @@
 ############################################################
 # Author: Jan-Hendrik Schünemann
-# Contact: jan-hendrik.schuenemann(at)haw-hamburg.de
 # Module: STAT
-# Assignment / Task: Task 1 – Age distribution
-# Version: v2.0
-# Last Update: 2025-12-10
-#
+# Task: 1 – Age distribution
+# Version: v2.0 (2025-12-10)
 # Required Dataset(s): (hard-coded in script)
-# Required Packages: summarytools
-#
-# R Version:
-# Operating System:
-# License: MIT
+# Required Libraries: summarytools
 ############################################################
 
 
@@ -65,3 +58,4 @@ freq_table <- cbind(
 )
 
 freq_table
+
