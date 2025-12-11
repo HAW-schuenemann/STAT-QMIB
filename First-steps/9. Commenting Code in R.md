@@ -2,7 +2,7 @@
 Author: Jan-Hendrik Schünemann  
 Module: STAT / QMIB  
 Version: v1.0  
-Last Update: YYYY-MM-DD  
+Last Update: 2025-12-11  
 License: MIT  
 
 ---
