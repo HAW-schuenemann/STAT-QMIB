@@ -2,7 +2,7 @@
 # Author: Jan-Hendrik Schünemann
 # Module: STAT
 # Task: 7 – Recoding: Comparison of Copies (Germany vs USA)
-# Version: v1.0 (YYYY-MM-DD)
+# Version: v1.0 (2025-12-11)
 # Required Dataset: MovieData.rds
 # Required Libraries: dplyr, summarytools
 ############################################################
