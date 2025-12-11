@@ -10,7 +10,7 @@ License: MIT  
 # STAT FUNCTION REFERENCE (Alphabetical Order)
 **📘 STAT Course Function Reference (Alphabetical Order) - All functions used in Tasks 1–17**
 
-This reference lists all R functions used across Tasks 1–17, providing comprehensive details on usage and core arguments.
+This reference lists all R functions used across Tasks 1–17, providing comprehensive details on usage, core function syntax, and arguments.
 
 For each function, you will find:
 * What it does
@@ -23,7 +23,7 @@ For each function, you will find:
 ## **1. arrange()**
 * **Package:** `dplyr`
 * **Purpose:** Sorts a data frame by the values of one or more specified columns.
-* **Core Arguments:**
+* **Core Arguments:** `arrange(..., .by_group)`
     * `...`: The columns to sort by. Use `desc()` to sort in descending order.
 * **Usage:**
     ```r
@@ -38,7 +38,7 @@ For each function, you will find:
 ## **2. as.numeric()**
 * **Package:** Base R
 * **Purpose:** Converts the input object (usually a factor or character vector) into a numeric vector.
-* **Core Arguments:**
+* **Core Arguments:** `as.numeric(x)`
     * `x`: The object to be coerced to numeric.
 * **Usage:**
     ```r
@@ -53,7 +53,7 @@ For each function, you will find:
 ## **3. assocstats()**
 * **Package:** `vcd`
 * **Purpose:** Calculates various association statistics for a two-way contingency table, including **Cramer's V**, **contingency coefficient**, and **$\chi^2$ statistics**.
-* **Core Arguments:**
+* **Core Arguments:** `assocstats(x)`
     * `x`: A table object (e.g., created by `table()`).
 * **Usage:**
     ```r
@@ -66,8 +66,8 @@ For each function, you will find:
 
 ## **4. boxplot()**
 * **Package:** Base R
-* **Purpose:** Creates a simple base R box-and-whisker plot for visualizing the distribution of a single metric variable. 
-* **Core Arguments:**
+* **Purpose:** Creates a simple base R box-and-whisker plot for visualizing the distribution of a single metric variable.
+* **Core Arguments:** `boxplot(x, ..., main)` 
     * `x`: The numeric vector or list of vectors for the plot.
     * `main`: Optional title for the plot.
 * **Usage:**
@@ -83,7 +83,7 @@ For each function, you will find:
 ## **5. case_when()**
 * **Package:** `dplyr`
 * **Purpose:** Performs conditional logic (like an `if/else if/else` structure) to create new variables based on multiple criteria.
-* **Core Arguments:**
+* **Core Arguments:** `case_when(...)`
     * `...`: Pairs of logical conditions (LHS) and corresponding results (RHS), separated by a tilde (`~`). `TRUE ~ result` is the catch-all final case.
 * **Usage:**
     ```r
@@ -101,7 +101,7 @@ For each function, you will find:
 ## **6. cbind()**
 * **Package:** Base R
 * **Purpose:** Combines R objects (e.g., vectors, matrices, or data frames) by columns (column bind).
-* **Core Arguments:**
+* **Core Arguments:** `cbind(...)`
     * `...`: The R objects to combine.
 * **Usage:**
     ```r
@@ -116,7 +116,7 @@ For each function, you will find:
 ## **7. complete.cases()**
 * **Package:** Base R
 * **Purpose:** Returns a logical vector (`TRUE`/`FALSE`) indicating which rows in a data frame or vector have **no missing values** (`NA`).
-* **Core Arguments:**
+* **Core Arguments:** `complete.cases(...)`
     * `...`: The vectors or data frames to test for completeness.
 * **Usage:**
     ```r
@@ -131,7 +131,7 @@ For each function, you will find:
 ## **8. cor()**
 * **Package:** Base R
 * **Purpose:** Computes the correlation coefficient between two vectors.
-* **Core Arguments:**
+* **Core Arguments:** `cor(x, y, use, method)`
     * `x`, `y`: First and second numeric vectors.
     * `method`: The correlation method, typically `"pearson"` (linear), `"spearman"` (rank-based), or `"kendall"`.
     * `use`: How to handle NAs, often `"pairwise.complete.obs"`.
@@ -149,8 +149,8 @@ For each function, you will find:
 ## **9. coord_polar()**
 * **Package:** `ggplot2`
 * **Purpose:** Converts a Cartesian coordinate system into a **polar coordinate system**, used primarily to turn bar charts into pie charts.
-* **Core Arguments:**
-    * `theta`: The aesthetic to map to the angle, usually `"x"` or `"y"`. For pie charts derived from counts, this is `"y"`.
+* **Core Arguments:** `coord_polar(theta, ...)`
+    * `theta`: The aesthetic to map to the angle, usually `"y"` for pie charts derived from counts.
 * **Usage:**
     ```r
     coord_polar(
@@ -163,7 +163,7 @@ For each function, you will find:
 ## **10. CrossTable()**
 * **Package:** `gmodels`
 * **Purpose:** Creates a highly detailed two-way frequency table (cross-tabulation) including percentages and $\chi^2$ statistics.
-* **Core Arguments:**
+* **Core Arguments:** `CrossTable(x, y, ...)`
     * `x`: Factor or vector for the rows.
     * `y`: Factor or vector for the columns.
 * **Usage:**
@@ -179,7 +179,7 @@ For each function, you will find:
 ## **11. cume_dist()**
 * **Package:** `dplyr`
 * **Purpose:** Calculates the **cumulative distribution** of values, returning a value between 0 and 1.
-* **Core Arguments:**
+* **Core Arguments:** `cume_dist(x)`
     * `x`: The numeric vector.
 * **Usage:**
     ```r
@@ -193,7 +193,7 @@ For each function, you will find:
 ## **12. cut()**
 * **Package:** Base R
 * **Purpose:** Divides a numeric vector into intervals (bins) and codes the values as a factor.
-* **Core Arguments:**
+* **Core Arguments:** `cut(x, breaks, ..., include.lowest)`
     * `x`: The numeric vector to cut.
     * `breaks`: A numeric vector of cut points (boundaries).
     * `include.lowest`: Logical, indicating if the lowest value should be included in the first interval.
@@ -212,7 +212,7 @@ For each function, you will find:
 ## **13. filter()**
 * **Package:** `dplyr`
 * **Purpose:** Selects a subset of rows based on specified logical conditions.
-* **Core Arguments:**
+* **Core Arguments:** `filter(.data, ..., .preserve)`
     * `...`: Logical expressions defining the conditions to keep rows.
 * **Usage:**
     ```r
@@ -227,7 +227,7 @@ For each function, you will find:
 ## **14. freq()**
 * **Package:** `summarytools`
 * **Purpose:** Generates a comprehensive one-way frequency table showing counts, frequencies, and cumulative frequencies.
-* **Core Arguments:**
+* **Core Arguments:** `freq(x, ..., report.nas)`
     * `x`: The vector to analyze.
     * `report.nas`: Logical, whether to report NAs as a category.
 * **Usage:**
@@ -243,9 +243,9 @@ For each function, you will find:
 
 ## **15. geom_bar()**
 * **Package:** `ggplot2`
-* **Purpose:** Used within `ggplot()` to create bar charts. By default, it counts the observations in each category.
-* **Core Arguments:**
-    * `mapping`: Aesthetics to override or compute (e.g., mapping Y to relative frequency).
+* **Purpose:** Used within `ggplot()` to create bar charts. By default, it counts the observations in each category (`stat="count"`).
+* **Core Arguments:** `geom_bar(mapping, data, stat, ...)`
+    * `mapping`: Aesthetics to override or compute (e.g., mapping Y to relative frequency using `after_stat()`).
 * **Usage:**
     ```r
     geom_bar(
@@ -258,7 +258,7 @@ For each function, you will find:
 ## **16. geom_boxplot()**
 * **Package:** `ggplot2`
 * **Purpose:** Used within `ggplot()` to create a boxplot layer.
-* **Core Arguments:**
+* **Core Arguments:** `geom_boxplot(..., outlier.shape)`
     * `outlier.shape`: Controls the appearance of outliers; often set to `NA` when points are added separately.
 * **Usage:**
     ```r
@@ -272,7 +272,7 @@ For each function, you will find:
 ## **17. geom_point()**
 * **Package:** `ggplot2`
 * **Purpose:** Used within `ggplot()` to create a layer of points (e.g., for scatter plots or raw data points on a boxplot).
-* **Core Arguments:**
+* **Core Arguments:** `geom_point(mapping, data, ..., alpha, position)`
     * `alpha`: Transparency level (0 to 1).
     * `position`: How to handle overlapping points, often `position_jitter()` for scatter.
 * **Usage:**
@@ -288,7 +288,7 @@ For each function, you will find:
 ## **18. ggplot()**
 * **Package:** `ggplot2`
 * **Purpose:** The main function to **initialize a plot object** and define the data and the primary aesthetic mappings.
-* **Core Arguments:**
+* **Core Arguments:** `ggplot(data, mapping)`
     * `data`: The data frame to use.
     * `mapping`: Aesthetic mappings, defined using `aes()`, linking variables to visual properties (e.g., `x`, `y`).
 * **Usage:**
@@ -304,7 +304,7 @@ For each function, you will find:
 ## **19. group_by()**
 * **Package:** `dplyr`
 * **Purpose:** Groups a data frame by one or more variables. Subsequent operations will be applied per group.
-* **Core Arguments:**
+* **Core Arguments:** `group_by(.data, ..., .add, .drop)`
     * `...`: The columns to group by.
 * **Usage:**
     ```r
@@ -319,7 +319,7 @@ For each function, you will find:
 ## **20. kable()**
 * **Package:** `knitr` (often used with `kableExtra`)
 * **Purpose:** Converts R objects (like data frames or tables) into presentable table formats (e.g., Markdown, HTML).
-* **Core Arguments:**
+* **Core Arguments:** `kable(x, ..., caption, digits)`
     * `x`: The R object (data frame/table) to format.
     * `caption`: Optional table caption.
     * `digits`: Number of decimal places to round numeric columns to.
@@ -336,7 +336,7 @@ For each function, you will find:
 ## **21. labs()**
 * **Package:** `ggplot2`
 * **Purpose:** Defines or overrides the labels for plot elements (title, axes, legends).
-* **Core Arguments:**
+* **Core Arguments:** `labs(..., title, x, y, fill, color)`
     * `title`, `subtitle`: Main and secondary title.
     * `x`, `y`: Axis labels.
     * `fill`, `color`: Legend titles.
@@ -354,7 +354,7 @@ For each function, you will find:
 ## **22. mean(), median(), min(), max()**
 * **Package:** Base R
 * **Purpose:** Standard functions for calculating measures of central tendency (`mean`, `median`) and range (`min`, `max`).
-* **Core Arguments:**
+* **Core Arguments:** `mean(x, trim, na.rm)` (similar for others)
     * `x`: The numeric vector.
     * `na.rm`: Logical, **must be set to `TRUE`** to remove `NA` values before calculation.
 * **Usage:**
@@ -370,7 +370,7 @@ For each function, you will find:
 ## **23. mutate()**
 * **Package:** `dplyr`
 * **Purpose:** Adds new variables to an existing data frame or modifies the values of existing variables.
-* **Core Arguments:**
+* **Core Arguments:** `mutate(.data, ..., .before, .after)`
     * `...`: New column names followed by an equals sign and the expression defining the new variable.
 * **Usage:**
     ```r
@@ -384,8 +384,8 @@ For each function, you will find:
 
 ## **24. plot()**
 * **Package:** Base R
-* **Purpose:** Generic function for plotting. Creates **scatterplots** for two numeric variables and **mosaic plots** for two categorical variables. 
-* **Core Arguments:**
+* **Purpose:** Generic function for plotting. Creates **scatterplots** for two numeric variables and **mosaic plots** for two categorical variables.
+* **Core Arguments:** `plot(x, y, ...)` 
     * `x`, `y`: The vectors to plot.
 * **Usage:**
     ```r
@@ -405,7 +405,7 @@ For each function, you will find:
 ## **25. plot_ly()**
 * **Package:** `plotly`
 * **Purpose:** The main function for creating **interactive, web-based graphs**.
-* **Core Arguments:**
+* **Core Arguments:** `plot_ly(data, ..., labels, values, type)`
     * `data`: The data frame.
     * `labels`: The column for the slice labels (e.g., category names).
     * `values`: The column for the slice values (e.g., counts).
@@ -425,7 +425,7 @@ For each function, you will find:
 ## **26. quantile()**
 * **Package:** Base R
 * **Purpose:** Computes sample quantiles corresponding to given probabilities (e.g., percentiles, quartiles).
-* **Core Arguments:**
+* **Core Arguments:** `quantile(x, probs, na.rm, type)`
     * `x`: The numeric vector.
     * `probs`: The probability (or vector of probabilities) for which to find the quantile (0 to 1).
     * `type`: The algorithm used for calculation; **`type = 2`** is used in the course.
@@ -444,7 +444,7 @@ For each function, you will find:
 ## **27. readRDS()**
 * **Package:** Base R
 * **Purpose:** Loads a single R object (like a data frame) that was saved in the RDS binary format.
-* **Core Arguments:**
+* **Core Arguments:** `readRDS(file)`
     * `file`: The path and filename of the RDS file.
 * **Usage:**
     ```r
@@ -458,7 +458,7 @@ For each function, you will find:
 ## **28. rowSums()**
 * **Package:** Base R
 * **Purpose:** Calculates the sum of values for each row across specified columns of a matrix or data frame.
-* **Core Arguments:**
+* **Core Arguments:** `rowSums(x, na.rm)`
     * `x`: The array or data frame (usually subsetted to the columns of interest).
     * `na.rm`: Logical, set to `TRUE` to ignore `NA` values in the sum.
 * **Usage:**
@@ -474,7 +474,7 @@ For each function, you will find:
 ## **29. select()**
 * **Package:** `dplyr`
 * **Purpose:** Selects and/or renames columns.
-* **Core Arguments:**
+* **Core Arguments:** `select(.data, ..., .by_group)`
     * `...`: Column names to keep (or rename using `new_name = old_name`).
 * **Usage:**
     ```r
@@ -490,7 +490,7 @@ For each function, you will find:
 ## **30. simpson()**
 * **Package:** `abdiv`
 * **Purpose:** Calculates the **Simpson index of diversity** ($1-D$) based on the counts of different categories.
-* **Core Arguments:**
+* **Core Arguments:** `simpson(counts, unbiased)`
     * `counts`: A vector of counts or frequencies for each category.
     * `unbiased`: Logical, typically `FALSE` for the course.
 * **Usage:**
@@ -506,7 +506,7 @@ For each function, you will find:
 ## **31. stat_boxplot()**
 * **Package:** `ggplot2`
 * **Purpose:** A statistical summary layer used to calculate boxplot statistics. Used to manually add the whisker bars to a boxplot.
-* **Core Arguments:**
+* **Core Arguments:** `stat_boxplot(mapping, data, ..., geom, width)`
     * `geom`: The geometry to use for the calculated stats, typically `"errorbar"` for whiskers.
     * `width`: Width of the errorbar caps.
 * **Usage:**
@@ -522,7 +522,7 @@ For each function, you will find:
 ## **32. summarise()**
 * **Package:** `dplyr`
 * **Purpose:** Collapses a data frame into summary statistics (one row per group or one row total).
-* **Core Arguments:**
+* **Core Arguments:** `summarise(.data, ...)`
     * `...`: New column names followed by an equals sign and the summary function (e.g., `mean()`, `n()`).
 * **Usage:**
     ```r
@@ -537,7 +537,7 @@ For each function, you will find:
 ## **33. table()**
 * **Package:** Base R
 * **Purpose:** Creates a one-way (frequency) or two-way (contingency) table of counts for categorical vectors.
-* **Core Arguments:**
+* **Core Arguments:** `table(...)`
     * `...`: The categorical vectors to cross-tabulate.
 * **Usage:**
     ```r
@@ -552,7 +552,7 @@ For each function, you will find:
 ## **34. theme_minimal() / theme_void()**
 * **Package:** `ggplot2`
 * **Purpose:** Predefined theme functions to quickly change the visual appearance of a `ggplot2` plot. `theme_void()` removes all visual noise, ideal for pie charts.
-* **Core Arguments:** None required; applied directly to the plot.
+* **Core Arguments:** `theme_minimal(...)` / `theme_void(...)`
 * **Usage:**
     ```r
     theme_minimal()
@@ -564,7 +564,7 @@ For each function, you will find:
 ## **35. ungroup()**
 * **Package:** `dplyr`
 * **Purpose:** Removes the grouping applied by `group_by()`.
-* **Core Arguments:** None required; applied directly after a grouped operation.
+* **Core Arguments:** `ungroup(.data, ...)`
 * **Usage:**
     ```r
     df %>% ungroup()
@@ -575,7 +575,7 @@ For each function, you will find:
 ## **36. xlim()**
 * **Package:** `ggplot2`
 * **Purpose:** Manually sets the range (minimum and maximum) of the x-axis.
-* **Core Arguments:**
+* **Core Arguments:** `xlim(...)`
     * `...`: The minimum and maximum limits (e.g., `c(min, max)`).
 * **Usage:**
     ```r
@@ -590,7 +590,7 @@ For each function, you will find:
 ## **37. ylab(), xlab()**
 * **Package:** `ggplot2`
 * **Purpose:** Convenience functions to define the label for the y-axis (`ylab()`) and x-axis (`xlab()`) in a `ggplot2` plot.
-* **Core Arguments:**
+* **Core Arguments:** `ylab(label, ...)` / `xlab(label, ...)`
     * `label`: A character string containing the desired axis label.
 * **Usage:**
     ```r
