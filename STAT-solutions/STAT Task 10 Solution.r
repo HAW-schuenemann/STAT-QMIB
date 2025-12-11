@@ -2,7 +2,7 @@
 # Author: Jan-Hendrik Schünemann
 # Module: STAT
 # Task: 10 – Summary Measures and Graphics
-# Version: v1.2 (YYYY-MM-DD)
+# Version: v1.2 (2025-12-11)
 # Required Dataset: MovieData.rds
 # Required Libraries: dplyr, summarytools, ggplot2, abdiv, plotly
 ############################################################
@@ -29,6 +29,8 @@ boxplot(df$DECopiesW1,
         col = "lightblue")
 
 ### B) PREFERRED VERSION (Manual summary + ggplot)
+
+# Extended 5-Number Summary and Skewness Calculation (can also be done outside of the summarize function)
 
 df %>%
   summarize(
