@@ -4,7 +4,7 @@
 # Exercise: Exercise 1 – Hypothesis Tests for Department Store Data
 # Version: v1.0
 # Last Update: 2026-05-20
-# Required Dataset(s): RDepartmentstore data.rds
+# Required Dataset(s): RDepartmentstore.rds
 # Required Packages: None
 # License: MIT
 # ============================================================
