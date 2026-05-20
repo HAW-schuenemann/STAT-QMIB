@@ -13,6 +13,10 @@
 # Load data
 # ============================================================
 
+# readRDS() loads an R data file in .rds format.
+# The loaded object is stored as df so that we can access the variables
+# with the structure df$variable_name.
+
 df <- readRDS("RDepartmentstore data.rds")
 
 
@@ -27,9 +31,24 @@ df <- readRDS("RDepartmentstore data.rds")
 # H1: pi_response > 0.15
 # H0: pi_response <= 0.15
 
+# table() gives the absolute frequencies of a variable.
+# We use it here to find the number of customers who ordered the last catalogue.
+#
+# The count for the relevant category is then used as x in prop.test().
+
 table(df$response)
 
-# One-sample z-test for a proportion
+# prop.test() performs a test for proportions.
+#
+# x = number of observed successes
+# n = total number of observations
+# p = hypothesised population proportion under H0
+# alternative = direction of H1
+# conf.level = confidence level
+# correct = FALSE switches off Yates' continuity correction
+#
+# Since the claim says "above 15%", we use alternative = "greater".
+
 prop.test(
   x = 121,
   n = 1000,
@@ -60,7 +79,15 @@ prop.test(
 # The income variable is measured in thousand US$.
 # Therefore, 50,000 US$ is entered as 50.
 
-# One-sample t-test
+# t.test() performs a t-test.
+#
+# Here, we use a one-sample t-test because we compare the sample mean
+# of one metric variable against a hypothesised value.
+#
+# df$income is the variable being tested.
+# mu = 50 is the hypothesised mean under H0.
+# alternative = "greater" is used because the claim says "exceeds".
+
 t.test(
   df$income,
   alternative = "greater",
@@ -86,7 +113,18 @@ t.test(
 # H1: mu_age_tvpurchase_No != mu_age_tvpurchase_Yes
 # H0: mu_age_tvpurchase_No = mu_age_tvpurchase_Yes
 
-# Two-sample t-test
+# Here, t.test() is used as a two-sample t-test.
+#
+# The formula structure is:
+#
+# metric variable ~ grouping variable
+#
+# df$age is the metric variable.
+# df$tvpurchase is the grouping variable.
+#
+# alternative = "two.sided" is used because the claim is about a difference
+# in either direction.
+
 t.test(
   df$age ~ df$tvpurchase,
   alternative = "two.sided",
@@ -111,9 +149,19 @@ t.test(
 # H1: pi_news < 0.50
 # H0: pi_news >= 0.50
 
+# We use table() again to find the count of customers with a daily newspaper
+# subscription.
+
 table(df$news)
 
-# One-sample z-test for a proportion
+# This is again a one-sample test for a proportion.
+#
+# x = 471 is the number of customers with a daily newspaper subscription.
+# n = 1000 is the total sample size.
+# p = 0.50 is the hypothesised proportion under H0.
+#
+# Since the claim says "fewer than half", we use alternative = "less".
+
 prop.test(
   x = 471,
   n = 1000,
@@ -141,7 +189,16 @@ prop.test(
 # H1: mu_hourstv_married > mu_hourstv_unmarried
 # H0: mu_hourstv_married <= mu_hourstv_unmarried
 
-# Two-sample t-test
+# This is a two-sample t-test because we compare the mean weekly TV viewing time
+# between two independent groups.
+#
+# df$hourstv is the metric variable.
+# df$marital is the grouping variable.
+#
+# The direction of alternative depends on the order in which R compares the
+# groups. Here, alternative = "less" matches the intended comparison based on
+# the coding and ordering of df$marital.
+
 t.test(
   df$hourstv ~ df$marital,
   alternative = "less",
@@ -166,7 +223,11 @@ t.test(
 # H1: mu_debt < 1400
 # H0: mu_debt >= 1400
 
-# One-sample t-test
+# This is a one-sample t-test because we compare the sample mean of debt
+# against the hypothesised value of 1,400.
+#
+# Since the claim says "below 1,400", we use alternative = "less".
+
 t.test(
   df$debt,
   alternative = "less",
@@ -192,7 +253,16 @@ t.test(
 # H1: mu_income_male > mu_income_female
 # H0: mu_income_male <= mu_income_female
 
-# Two-sample t-test
+# This is a two-sample t-test because we compare mean income between two
+# independent groups.
+#
+# df$income is the metric variable.
+# df$gender is the grouping variable.
+#
+# alternative = "greater" is used because the claim states that the mean
+# income of the first group shown by R is higher than the mean income of
+# the second group.
+
 t.test(
   df$income ~ df$gender,
   alternative = "greater",
@@ -217,7 +287,16 @@ t.test(
 # H1: mu_age_response_Yes > mu_age_response_No
 # H0: mu_age_response_Yes <= mu_age_response_No
 
-# Two-sample t-test
+# This is a two-sample t-test because we compare the average age between
+# customers who ordered the catalogue and those who did not.
+#
+# df$age is the metric variable.
+# df$response is the grouping variable.
+#
+# The direction of alternative depends on the order in which R compares the
+# response groups. Here, alternative = "less" matches the intended comparison
+# based on the coding and ordering of df$response.
+
 t.test(
   df$age ~ df$response,
   alternative = "less",
