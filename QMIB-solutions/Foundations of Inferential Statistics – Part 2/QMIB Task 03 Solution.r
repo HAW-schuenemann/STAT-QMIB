@@ -73,8 +73,8 @@ corS
 
 # cor.test() tests whether a correlation is statistically significant.
 #
-# Here, we test the Pearson correlation because the claim refers to a positive
-# linear relationship between age and years with the employer.
+# Here, we test the Pearson correlation because the delta between the
+# coefficients is below 10%
 #
 # alternative = "greater" is used because the claim states a positive
 # relationship.
@@ -183,8 +183,8 @@ corS
 
 (corP / corS - 1) * 100
 
-# The test is performed with Spearman correlation because household size
-# is a count variable and may not behave like a continuous metric variable.
+# The test is performed with Spearman correlation the delta between
+# the coefficients is greater than 10%
 
 cor.test(
   df$pershh,
