@@ -2,7 +2,7 @@
 # Author: Jan-Hendrik Schünemann
 # Module: STAT
 # Task: 8 – Classification: Equal Widths vs Equal Frequencies
-# Version: v1.2 (2025-12-11)
+# Version: v1.3 (2026-06-02)
 # Required Dataset: MovieData.rds
 # Required Libraries: dplyr, summarytools, ggplot2
 ############################################################
@@ -52,7 +52,7 @@ df <- df %>%
   mutate(
     DECopiesW1_width =
       cut(DECopiesW1,
-          breaks = c(breaks_eqwidth, max_val),
+          breaks = breaks_eqwidth,
           include.lowest = TRUE)
   )
 
