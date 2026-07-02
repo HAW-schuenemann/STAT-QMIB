@@ -1,16 +1,16 @@
 # Function Glossary  
 Author: Jan-Hendrik Schünemann  
 Module: STAT / QMIB  
-Version: v1.0  
-Last Update: 2025-12-11  
+Version: v1.1  
+Last Update: 2026-07-02  
 License: MIT  
 
 ---
 
 # STAT FUNCTION REFERENCE (Alphabetical Order)
-**📘 STAT Course Function Reference (Alphabetical Order) - All functions used in Tasks 1–17**
+**📘 STAT Course Function Reference (Alphabetical Order) - All functions used in Tasks 1–18**
 
-This reference lists all R functions used across Tasks 1–17, providing comprehensive details on usage, core function syntax, and arguments.
+This reference lists all R functions used across Tasks 1–18, providing comprehensive details on usage, core function syntax, and arguments.
 
 For each function, you will find:
 * What it does
@@ -597,3 +597,100 @@ For each function, you will find:
     ylab("Visitors")
     xlab("Category")
     ```
+
+---
+
+## **38. coef()**
+* **Package:** Base R / `stats`
+* **Purpose:** Extracts the estimated coefficients from a model object, such as a linear regression model created with `lm()`.
+* **Core Arguments:** `coef(object, ...)`
+    * `object`: A fitted model object.
+* **Usage:**
+    ```r
+    coef(
+        lreg # Regression model object
+    )
+    ```
+* **Note:** In a simple linear regression, the output usually contains the intercept and the slope of the predictor.
+
+---
+
+## **39. data.frame()**
+* **Package:** Base R
+* **Purpose:** Creates a data frame, usually by combining named vectors into columns.
+* **Core Arguments:** `data.frame(...)`
+    * `...`: Named vectors or values that should become columns in the data frame.
+* **Usage:**
+    ```r
+    xpred <- data.frame(
+        SUCCESS = 70 # Predictor value for a new observation
+    )
+    ```
+* **Note:** In Task 18, `data.frame()` is used to create a small data frame containing the predictor value for which a prediction should be made.
+
+---
+
+## **40. lm()**
+* **Package:** Base R / `stats`
+* **Purpose:** Estimates a linear regression model.
+* **Core Arguments:** `lm(formula, data)`
+    * `formula`: Defines the dependent and independent variable using the structure `y ~ x`.
+    * `data`: The data frame containing the variables.
+* **Usage:**
+    ```r
+    lreg <- lm(
+        USSalesW1 ~ SUCCESS, # Dependent variable ~ predictor
+        data = df
+    )
+    ```
+* **Note:** In Task 18, `lm()` is used to estimate a simple linear regression model predicting first-week US sales from the success indicator.
+
+---
+
+## **41. predict()**
+* **Package:** Base R / `stats`
+* **Purpose:** Uses a fitted model to calculate predicted values for new observations.
+* **Core Arguments:** `predict(object, newdata)`
+    * `object`: A fitted model object, such as one created with `lm()`.
+    * `newdata`: A data frame containing the predictor values for which predictions should be made.
+* **Usage:**
+    ```r
+    predict(
+        lreg,          # Regression model object
+        newdata = xpred # New predictor values
+    )
+    ```
+* **Note:** The variable names in `newdata` must match the predictor names used in the model.
+
+---
+
+## **42. round()**
+* **Package:** Base R
+* **Purpose:** Rounds numeric values to a specified number of decimal places.
+* **Core Arguments:** `round(x, digits)`
+    * `x`: The numeric value, vector, matrix, or data frame to be rounded.
+    * `digits`: Number of decimal places to keep.
+* **Usage:**
+    ```r
+    round(
+        cor_matrix, # Numeric object to round
+        digits = 3  # Number of decimal places
+    )
+    ```
+* **Note:** In Task 18, `round()` is used to make correlation matrices easier to read.
+
+---
+
+## **43. summary()**
+* **Package:** Base R / `stats`
+* **Purpose:** Produces a detailed summary of an R object. For regression models, it shows model fit information, coefficients, residuals, and additional statistics.
+* **Core Arguments:** `summary(object, ...)`
+    * `object`: The object to summarize, such as a fitted model object.
+* **Usage:**
+    ```r
+    summary(
+        lreg # Regression model object
+    )
+    ```
+* **Note:** In Task 18, `summary(lreg)$r.squared` is used to extract the coefficient of determination, R squared.
+
