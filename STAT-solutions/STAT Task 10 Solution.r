@@ -2,7 +2,7 @@
 # Author: Jan-Hendrik Schünemann
 # Module: STAT
 # Task: 10 – Summary Measures and Graphics
-# Version: v1.2 (2025-12-11)
+# Version: v1.3 (2026-07-03)
 # Required Dataset: MovieData.rds
 # Required Libraries: dplyr, summarytools, ggplot2, abdiv, plotly
 ############################################################
@@ -69,11 +69,7 @@ ggplot(df, aes(x = COMP_INT)) +
   ) +
   theme_minimal()
 
-# Simpson Diversity Index
-comp_counts <- as.numeric(table(df$COMP_INT))
-divindex_comp_int <- simpson(comp_counts) * (length(comp_counts) / (length(comp_counts) - 1))
-divindex_comp_int
-
+# Simpson Diversity Index not applicable due to COMP_INT being ordinal
 
 ############################################################
 ### 3. CIN_TIP – cinema.de editor recommendation (categorical)
